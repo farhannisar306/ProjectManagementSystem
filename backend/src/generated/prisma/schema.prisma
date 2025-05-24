@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique(map: "email") @db.VarChar(255)
+  password  String?  @db.VarChar(2083)
+  firstname String
+  lastname  String
+  avatar    String?
+  bio       String?
+  address   String?
+  phone     String?
+  role      String?  @default("user")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  // store     Store?   @relation("User")
+  // orders    Order[]
+}
+
+// model Store {
+//   id          Int      @id @default(autoincrement())
+//   ownerId     String   @unique
+//   name        String   @unique
+//   slug        String   @unique
+//   description String?
+//   banner      String?
+//   logo        String?
+//   address     String?
+//   phone       String?
+//   isActive    Boolean  @default(true)
+//   createdAt   DateTime @default(now())
+//   updatedAt   DateTime @updatedAt
+
+//   owner    User      @relation("User", fields: [ownerId], references: [id])
+//   products Product[]
+//   orders   Order[]
+// }
+
+// model Product {
+//   id          Int      @id @default(autoincrement())
+//   name        String
+//   slug        String
+//   description String?
+//   banner      String?
+//   price       Int
+//   storeId     Int
+//   createdAt   DateTime @default(now())
+//   updatedAt   DateTime @updatedAt
+
+//   store      Store       @relation(fields: [storeId], references: [id])
+//   orderItems OrderItem[]
+// }
+
+// model Order {
+//   id        Int      @id @default(autoincrement())
+//   userId    String
+//   storeId   Int
+//   total     Int
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+
+//   user  User        @relation(fields: [userId], references: [id])
+//   store Store       @relation(fields: [storeId], references: [id])
+//   items OrderItem[]
+// }
+
+// model OrderItem {
+//   id        Int @id @default(autoincrement())
+//   orderId   Int
+//   storeId   Int
+//   productId Int
+//   quantity  Int
+//   price     Int
+
+//   order   Order   @relation(fields: [orderId], references: [id])
+//   product Product @relation(fields: [productId], references: [id])
+// }
