@@ -11,7 +11,6 @@ fs.readdirSync(routesPath).forEach((file) => {
         const route = require(path.join(routesPath, file));
         const formattedFileName = file.replace(/Routes\.ts$/, '');
         const routeName = '/' + formattedFileName.toLowerCase();
-        console.log(routeName)
         router.use(routeName, route.default || route);
     }
 });

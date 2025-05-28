@@ -10,7 +10,7 @@ datasource db {
 model User {
   id        String    @id @default(uuid())
   email     String    @unique(map: "email") @db.VarChar(255)
-  password  String?   @db.VarChar(2083)
+  password  String   @db.VarChar(2083)
   firstname String
   lastname  String
   avatar    String?   @db.Text
