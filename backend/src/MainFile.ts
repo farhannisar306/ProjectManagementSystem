@@ -39,7 +39,6 @@ startServer();
 // Cleanup on app termination
 process.on('beforeExit', async () => {
   await prisma.$disconnect();
-  console.log("ami more jacchi bara.....")
 });
 
 
