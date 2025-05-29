@@ -4,7 +4,7 @@
   "main": "./src/MainFile.ts",
   "scripts": {
     "start": "ts-node src/MainFile.ts",
-    "continous": "nodemon --exec ts-node src/MainFile.ts",
+    "continuous": "nodemon --exec ts-node src/MainFile.ts",
     "dev": "ts-node-dev --respawn src/MainFile.ts",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
