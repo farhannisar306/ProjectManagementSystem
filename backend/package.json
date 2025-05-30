@@ -1,11 +1,11 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "./src/MainFile.ts",
+  "main": "./src/index.ts",
   "scripts": {
-    "start": "ts-node src/MainFile.ts",
-    "continuous": "nodemon --exec ts-node src/MainFile.ts",
-    "dev": "ts-node-dev --respawn src/MainFile.ts",
+    "start": "ts-node src/index.ts",
+    "continuous": "nodemon --exec ts-node src/index.ts",
+    "dev": "ts-node-dev --respawn src/index.ts",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,11 +15,17 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^6.8.2",
+    "@types/cookie-parser": "^1.4.8",
     "argon2": "^0.43.0",
     "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "path": "^0.12.7"
+    "helmet": "^8.1.0",
+    "mysql2": "^3.14.1",
+    "path": "^0.12.7",
+    "socket.io": "^4.8.1",
+    "zod": "^3.25.41"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
