@@ -1,22 +1,22 @@
 datasource db {
-    provider = "mysql"
-    url      = env("DATABASE_URL")
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
+
 generator client {
   provider = "prisma-client-js"
 }
 
 model User {
-    id        String    @id @default(uuid())
-    email     String    @unique(map: "email") @db.VarChar(255)
-    password  String    @db.VarChar(2083)
-    firstname String
-    lastname  String
-    avatar    String?   @db.Text
-    bio       String?   @db.Text
-    phone     String?   @unique @db.VarChar(255)
-    role      String?   @default("user")
-    createdAt DateTime  @default(now())
-    updatedAt DateTime? @updatedAt
+  id           String    @id @default(uuid())
+  email        String    @unique @db.VarChar(255)
+  password     String    @db.VarChar(2083)
+  username     String    @db.VarChar(255)
+  domain       String    @unique @db.VarChar(255)
+  avatar       String?   @db.Text
+  bio          String?   @db.Text
+  phone        String?   @unique @db.VarChar(255)
+  role         String?   @default("user")
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime? @updatedAt
 }
-

@@ -56,8 +56,8 @@ export class HTTPResponse {
         return this.send(400, message, data);
     }
 
-    internalServerError(message?: string) {
-        return this.send(500, message || 'Internal Server Error');
+    internalServerError(message?: string, data?: any) {
+        return this.send(500, message || 'Internal Server Error', data);
     }
 
     // Add more methods if needed (for 400, 403, 409, etc.)

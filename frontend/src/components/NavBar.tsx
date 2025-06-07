@@ -1,6 +1,5 @@
-import Logo from '../modularComponents/Logo';
-import SearchBar from '../modularComponents/SearchBar';
-import UserMenu from '../modularComponents/UserMenu';
+import Logo from './ui/Logo';
+import SearchBar from './SearchBar';
 
 const NavBar = () => {
     return (
@@ -25,7 +24,6 @@ const NavBar = () => {
                         🛒
                         <span className="sr-only">Shopping cart</span>
                     </button>
-                    <UserMenu />
                 </div>
             </div>
         </nav>

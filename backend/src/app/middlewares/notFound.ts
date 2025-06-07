@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import {  Request, Response } from 'express';
-import { NOT_FOUND } from '../utils/HTTPStatuses';
+import { NOT_FOUND } from '../utils/status-codes/HTTPStatuses';
 
 // Adding return type explicitly
 const notFound = (req: Request, res: Response) => {
