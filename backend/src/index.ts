@@ -1,17 +1,16 @@
-import app from "./app";
 import { dbcontext } from "./app/context/dbContext";
-import { port } from "./config/config";
+import { backend_port } from "./config/config";
 import { io, socketserver } from "./socket/socketServer";
 
 /* Server Config */
-const server = socketserver.listen(port, () => {
-    console.log(`App Running on port ${port}`);
+const server = socketserver.listen(backend_port, () => {
+    console.log(`App Running on port ${backend_port}`);
 });
 
 //db connection
 dbcontext()
 // Handling unhandled promise rejection
-process.on('unhandledRejection', () => {
+process.on('unhandledRejection', (error) => {
     console.log('UnhandleRejection is detected, shutting the server')
     if (server) {
         server.close(() => {
@@ -23,7 +22,7 @@ process.on('unhandledRejection', () => {
 
 
 //handling uncaught exceptions
-process.on('uncaughtException', () => {
+process.on('uncaughtException', (error) => {
     console.log('UncaughtException is detected, shutting the server')
     process.exit(1)
 })

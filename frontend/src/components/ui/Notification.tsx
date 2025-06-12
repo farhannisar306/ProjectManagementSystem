@@ -1,7 +1,8 @@
+/* eslint-disable prefer-const */
 import { useState, useEffect, useCallback } from "react"
 import { motion } from "framer-motion"
 import { CheckCircle, XCircle, AlertTriangle, Info, X, Clock, Sparkles } from "lucide-react"
-import type { NotificationData } from "../../providers/notification-provider"
+import type { NotificationData } from "../../providers/Notification-Provider"
 
 interface NotificationProps extends NotificationData {
     index: number

@@ -1,3 +1,5 @@
+import { BAD_REQUEST, CREATED, INTERNAL_SERVER_ERROR, NOT_FOUND, OK, UNAUTHORIZED } from "./status-codes/HTTPStatuses";
+
 export class HTTPResponse {
     private res: any;
 
@@ -33,32 +35,30 @@ export class HTTPResponse {
     }
 
     success(data?: any, message?: string) {
-        return this.send(200, message, data);
+        return this.send(OK, message, data);
     }
 
     created(data?: any, message?: string) {
-        return this.send(201, message, data);
+        return this.send(CREATED, message, data);
     }
 
     error(statusCode?: number, message?: string, data?: any) {
-        return this.send(statusCode || 500, message, data);
+        return this.send(statusCode || INTERNAL_SERVER_ERROR, message, data);
     }
 
-    notFound(message?: string) {
-        return this.send(404, message);
+    notFound(message?: string, data?: any) {
+        return this.send(NOT_FOUND, message, data);
     }
 
     unauthorized(message?: string) {
-        return this.send(401, message);
+        return this.send(UNAUTHORIZED, message);
     }
 
     badRequest(message?: string, data?: any) {
-        return this.send(400, message, data);
+        return this.send(BAD_REQUEST, message, data);
     }
 
     internalServerError(message?: string, data?: any) {
-        return this.send(500, message || 'Internal Server Error', data);
+        return this.send(INTERNAL_SERVER_ERROR, message || 'Internal Server Error', data);
     }
-
-    // Add more methods if needed (for 400, 403, 409, etc.)
 }

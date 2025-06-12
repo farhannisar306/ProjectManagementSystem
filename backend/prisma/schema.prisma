@@ -8,15 +8,16 @@ generator client {
 }
 
 model User {
-  id           String    @id @default(uuid())
-  email        String    @unique @db.VarChar(255)
-  password     String    @db.VarChar(2083)
-  username     String    @db.VarChar(255)
-  domain       String    @unique @db.VarChar(255)
-  avatar       String?   @db.Text
-  bio          String?   @db.Text
-  phone        String?   @unique @db.VarChar(255)
-  role         String?   @default("user")
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime? @updatedAt
+  id         String    @id @default(uuid())
+  email      String    @unique @db.VarChar(255)
+  password   String?    @db.VarChar(2083)
+  username   String    @db.VarChar(255)
+  domain     String    @unique @db.VarChar(255)
+  avatar     String?   @db.Text
+  bio        String?   @db.Text
+  phone      String?   @unique @db.VarChar(255)
+  role       String?   @default("user")
+  isVerified Boolean   @default(false)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime? @updatedAt
 }

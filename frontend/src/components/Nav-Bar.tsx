@@ -1,5 +1,5 @@
+import SearchBar from './Search-Bar';
 import Logo from './ui/Logo';
-import SearchBar from './SearchBar';
 
 const NavBar = () => {
     return (

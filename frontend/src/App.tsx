@@ -1,16 +1,18 @@
 import { RouterProvider } from 'react-router-dom'
 import router from './routes/routes'
-import { NotificationProvider } from './providers/notification-provider'
 import NotificationContainer from './components/ui/Notification-Container'
-//import { useAuthTokenStore } from './stores/TokenStore'
+import { AuthenticationProvider } from './providers/Authentication-Provider'
+import { NotificationProvider } from './providers/Notification-Provider'
 
 function App() {
-  //const { token } = useAuthTokenStore();
   return (
-    <NotificationProvider>
-      <RouterProvider router={router} />
-      <NotificationContainer />
-    </NotificationProvider>
+    <AuthenticationProvider>
+      <NotificationProvider>
+        <RouterProvider router={router} />
+        <NotificationContainer />
+      </NotificationProvider>
+    </AuthenticationProvider>
+
 
   )
 }

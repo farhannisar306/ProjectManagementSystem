@@ -1,9 +1,6 @@
-import { Response } from 'express';
-import ErrorHandler from '../ErrorHandler';
-import { INTERNAL_SERVER_ERROR } from '../status-codes/HTTPStatuses';
-
-const COOKIE_NAME = 'accessToken';
-
+import { CookieOptions, Response } from 'express';
+import ErrorHandler from './ErrorHandler';
+import { INTERNAL_SERVER_ERROR } from './status-codes/HTTPStatuses';
 // Helper function to parse time strings like '15m', '30s', '2h', '1d'
 const parseDuration = (duration: string): number => {
     const match = duration.match(/^(\d+)([smhd])$/);
@@ -21,12 +18,12 @@ const parseDuration = (duration: string): number => {
     return time * unitToMs[unit];
 };
 
-export const setTokenCookie = (tokenType:string, res: Response, token: string, maxAge: string) => {
+export const setTokenCookie = (tokenName:string, config:CookieOptions, res: Response, token: string, maxAge: string) => {
     try {
-        res.cookie(tokenType, token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
+        res.cookie(tokenName, token, {
+            httpOnly: config.httpOnly,
+            secure: config.secure,
+            sameSite: config.sameSite,
             maxAge: parseDuration(maxAge),
         });
     } catch (error) {
@@ -34,8 +31,8 @@ export const setTokenCookie = (tokenType:string, res: Response, token: string, m
     }
 };
 
-export const clearAccessTokenCookie = (res: Response) => {
-    res.clearCookie(COOKIE_NAME, {
+export const clearTokenCookie = (tokenType:string, res: Response) => {
+    res.clearCookie(tokenType, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'strict',

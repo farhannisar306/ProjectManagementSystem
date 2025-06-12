@@ -1,9 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import catchAsync from "../utils/CatchAsyncError";
+import catchAsync from "./CatchAsyncError";
 import ErrorHandler from "../utils/ErrorHandler";
-import { verifyToken } from "../utils/token/TokenManager";
+import { verifyToken } from "../utils/token-manager";
 import { UNAUTHORIZED } from "../utils/status-codes/HTTPStatuses";
-import { HTTPResponse } from "../utils/HTTPResponseHandler";
 
 
 export interface AuthenticatedRequest extends Request {
@@ -18,8 +17,7 @@ export interface AuthenticatedRequest extends Request {
 
 export const isAuthenticate = catchAsync(
     async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
-        // Check for token in the Authorization header (Bearer token)
-        const token = req.headers.authorization?.split(" ")[1] || req.cookies?.["authenticate-token"];
+        const token = req.headers.authorization?.split(" ")[1];
 
         if (!token) {
             return next(new ErrorHandler("Login to access", UNAUTHORIZED));

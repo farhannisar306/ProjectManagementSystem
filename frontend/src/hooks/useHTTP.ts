@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useCallback } from "react";
 import axios, { type AxiosRequestConfig, type AxiosResponse } from "axios";
-import { api_url } from "../config/config";
+import { api_version, backend_port, base_url } from "../config/config";
 
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
 
@@ -26,7 +27,8 @@ export function useHttp<T = unknown>(): UseHttpReturn<T> {
             const source = axios.CancelToken.source();
             try {
                 const response: AxiosResponse<T> = await axios({
-                    url: `${api_url}/${url}`,
+                    url: `${base_url}:${backend_port}/api/${api_version}/${url}`,
+                    //url: `${url}`,
                     method,
                     data: body,
                     cancelToken: source.token,

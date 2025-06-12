@@ -1,5 +1,4 @@
-
-import { useNotifications } from "../../providers/notification-provider"
+import { useNotifications } from "../../providers/Notification-Provider"
 import Notification from "./Notification"
 import { AnimatePresence } from "framer-motion"
 

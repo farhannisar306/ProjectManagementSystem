@@ -1,22 +1,12 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Request, Response } from 'express';
+import { HTTPResponse } from '../utils/HTTPResponseHandler';
 
-import {  Request, Response } from 'express';
-import { NOT_FOUND } from '../utils/status-codes/HTTPStatuses';
-
-// Adding return type explicitly
 const notFound = (req: Request, res: Response) => {
-  res.status(NOT_FOUND).json({
+  const response = new HTTPResponse(res);
+  response.notFound("Not Found", {
     success: false,
-    statusCode: NOT_FOUND,
-    message: 'Not Found',
-    errorMessages: [
-      {
-        path: req.originalUrl,
-        message: 'API Not Found',
-      },
-    ],
-  });
+    path: req.originalUrl
+  })
 };
 
 export default notFound;
